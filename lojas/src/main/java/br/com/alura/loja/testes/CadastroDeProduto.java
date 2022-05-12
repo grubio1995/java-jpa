@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import br.com.alura.loja.dao.ProdutoDao;
 import br.com.alura.loja.modelo.Produto;
+import br.com.alura.loja.util.JpaUtil;
 
 public class CadastroDeProduto {
 
@@ -18,9 +19,7 @@ public class CadastroDeProduto {
 		celular.setDescricao("Muito legal");
 		celular.setPreco(new BigDecimal("800"));
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("lojas");
-		
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = JpaUtil.getEntityManager();
 
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		
