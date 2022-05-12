@@ -21,7 +21,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
-	private LocalDate dataCdastro = LocalDate.now();
+	private LocalDate dataCadastro = LocalDate.now();
 
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
@@ -65,12 +65,12 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public LocalDate getDataCdastro() {
-		return dataCdastro;
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setDataCdastro(LocalDate dataCdastro) {
-		this.dataCdastro = dataCdastro;
+	public void setDataCdastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Categoria getCategoria() {
