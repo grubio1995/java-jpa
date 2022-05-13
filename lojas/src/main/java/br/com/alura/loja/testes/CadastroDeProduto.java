@@ -14,18 +14,18 @@ public class CadastroDeProduto {
 
 	public static void main(String[] args) {
 	
-		Categoria celulares = new Categoria("CELULARES");
-		Produto celular = new Produto("Xiaomi Redmi", "Muito legal",new BigDecimal("800"), celulares);
+		Categoria celulares = new Categoria("Celulares");
 		
 		EntityManager em = JpaUtil.getEntityManager();
-
-		CategoriaDao categoriaDao = new CategoriaDao(em);
-		ProdutoDao produtoDao = new ProdutoDao(em);
+		em.getTransaction().begin();;
 		
-		em.getTransaction().begin();
-		categoriaDao.cadastrar(celulares);
-		produtoDao.cadastrar(celular);
+		em.persist(celulares);
+		celulares.setNome("XPTO");
+		
 		em.getTransaction().commit();
 		em.close();
+		
+		celulares.setNome("1234");
+
 	}
 }
