@@ -9,6 +9,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categorias")
 public class Categoria {
+	
+
+	public Categoria() {
+	}
 
 	public Categoria(String nome) {
 		this.nome = nome;
