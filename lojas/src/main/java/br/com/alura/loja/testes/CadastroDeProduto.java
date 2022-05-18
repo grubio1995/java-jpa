@@ -12,7 +12,7 @@ public class CadastroDeProduto {
 		Categoria celulares = new Categoria("Celulares");
 		
 		EntityManager em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();;
+		em.getTransaction().begin();
 		
 		em.persist(celulares);
 		celulares.setNome("XPTO");
@@ -24,6 +24,9 @@ public class CadastroDeProduto {
 		celulares.setNome("1234");
 
 		em.flush();
-
+		em.remove(celulares);
+		em.flush();
+		
+		
 	}
 }
