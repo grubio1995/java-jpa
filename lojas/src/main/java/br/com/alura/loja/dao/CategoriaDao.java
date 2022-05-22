@@ -11,7 +11,6 @@ public class CategoriaDao {
 	public CategoriaDao(EntityManager em) {
 		this.em = em;
 	}
-	
 
 	public void cadastrar(Categoria categoria) {
 		this.em.persist(categoria);
@@ -22,6 +21,7 @@ public class CategoriaDao {
 	}
 	
 	public void remover(Categoria categoria) {
+		categoria = this.em.merge(categoria);
 		this.em.remove(categoria);
 	}
 }
