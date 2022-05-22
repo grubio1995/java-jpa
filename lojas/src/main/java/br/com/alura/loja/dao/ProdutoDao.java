@@ -35,4 +35,18 @@ public class ProdutoDao {
 		var jpql = "SELECT p FROM Produto p";
 		return em.createQuery(jpql, Produto.class).getResultList();
 	}
+	
+	public List<Produto> listarPorNome(String nome) {
+		var jpql = "SELECT p FROM Produto p where p.nome LIKE :nome";
+		return em.createQuery(jpql, Produto.class)
+				.setParameter("nome", nome)
+				.getResultList();
+	}
+	
+	public List<Produto> listarPorCategoria(String nomeCategoria) {
+		var jpql = "SELECT p FROM Produto p WHERE p.categoria.nome LIKE :nomeCategoria";
+		return em.createQuery(jpql, Produto.class)
+				.setParameter("nomeCategoria", nomeCategoria)
+				.getResultList();
+	}
 }
