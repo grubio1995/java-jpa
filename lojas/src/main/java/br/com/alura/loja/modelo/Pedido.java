@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +26,8 @@ public class Pedido {
 	private BigDecimal valorTotal;
 	private LocalDate data = LocalDate.now();
 	
-	private List<ItemPedido> itensPedido;
+	@OneToMany
+	private List<ItemPedido> itens;
 
 	public Pedido() {
 	}
