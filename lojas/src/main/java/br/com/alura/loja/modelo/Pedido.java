@@ -2,6 +2,7 @@ package br.com.alura.loja.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,28 +12,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "produtos")
+@Table(name = "pedidos")
 public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nome;
-	private String descricao;
-	private BigDecimal preco;
-	private LocalDate dataCadastro = LocalDate.now();
 
 	@ManyToOne
-	private Categoria categoria;
+	private Cliente cliente;
+
+	private BigDecimal valorTotal;
+	private LocalDate data = LocalDate.now();
+	
+	private List<ItemPedido> itensPedido;
 
 	public Pedido() {
 	}
 
-	public Pedido(String nome, String descricao, BigDecimal preco, Categoria categoria) {
-		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
-		this.categoria = categoria;
+	public Pedido(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public long getId() {
@@ -43,44 +42,28 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public BigDecimal getValorTotal() {
+		return valorTotal;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
-	public BigDecimal getPreco() {
-		return preco;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
-
-	public LocalDate getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCdastro(LocalDate dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
 }
