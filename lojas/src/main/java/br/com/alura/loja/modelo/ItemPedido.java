@@ -30,9 +30,10 @@ public class ItemPedido {
 	public ItemPedido() {
 	}
 
-	public ItemPedido(int quantidade, Pedido pedido, Produto produto) {
+	public ItemPedido(int quantidade, Pedido pedido, BigDecimal precoUnitario, Produto produto) {
 		this.quantidade = quantidade;
 		this.pedido = pedido;
+		this.precoUnitario = produto.getPreco();
 		this.produto = produto;
 	}
 
