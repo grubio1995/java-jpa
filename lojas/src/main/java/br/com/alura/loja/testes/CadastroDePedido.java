@@ -33,8 +33,12 @@ public class CadastroDePedido {
 		
 		PedidoDao pedidoDao = new PedidoDao(em);
 		pedidoDao.cadastrar(pedido);
-		
+				
 		em.getTransaction().commit();
+		
+		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+		System.out.println("Valor Total: " + totalVendido);
+		
 		em.close();
 
 	}
