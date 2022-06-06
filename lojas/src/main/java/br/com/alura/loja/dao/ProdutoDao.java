@@ -38,8 +38,7 @@ public class ProdutoDao {
 	}
 	
 	public List<Produto> listarPorNome(String nome) {
-		var jpql = "SELECT p FROM Produto p where p.nome LIKE :nome";
-		return em.createQuery(jpql, Produto.class)
+		return em.createNamedQuery("Produto.produtosPorCategoria", Produto.class)
 				.setParameter("nome", nome)
 				.getResultList();
 	}
