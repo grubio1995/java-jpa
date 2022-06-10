@@ -7,6 +7,10 @@ import java.util.Objects;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.h2.util.StringUtils;
 
@@ -89,5 +93,30 @@ public class ProdutoDao {
 		}
 
 		return query.getResultList();
+	}
+	
+	public List<Produto> buscarPorParamatrosComCriteria(String nome, BigDecimal preco, LocalDate dataCadastro){
+		
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Produto> query = builder.createQuery(Produto.class);
+		Root<Produto> from = query.from(Produto.class);
+		
+		Predicate filtros = builder.and();
+		
+		if(!StringUtils.isNullOrEmpty(nome)) {
+			filtros = builder.and(filtros, builder.equal(from.get("nome"), nome));
+		}
+
+		if(Objects.nonNull(preco)) {
+			filtros = builder.and(filtros, builder.equal(from.get("preco"), preco));
+		}
+
+		if(Objects.nonNull(dataCadastro)) {
+			filtros = builder.and(filtros, builder.equal(from.get("dataCadastro"), dataCadastro));
+		}
+				
+		query.where(filtros);
+		
+		return em.createQuery(query).getResultList();
 	}
 }
