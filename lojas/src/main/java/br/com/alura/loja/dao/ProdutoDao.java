@@ -52,7 +52,7 @@ public class ProdutoDao {
 	}
 
 	public List<Produto> listarPorCategoria(String nomeCategoria) {
-		var jpql = "SELECT p FROM Produto p WHERE p.categoria.nome LIKE :nomeCategoria";
+		var jpql = "SELECT p FROM Produto p WHERE p.categoria.categoriaId.nome LIKE :nomeCategoria";
 		return em.createQuery(jpql, Produto.class).setParameter("nomeCategoria", nomeCategoria).getResultList();
 	}
 
